@@ -1,0 +1,51 @@
+*{
+    padding: 2%;
+    margin: 2%;
+    color: blue;
+}
+
+.GridContainer {
+    display: grid;
+    grid-template-areas: 
+    'header  header  header'
+    'left right right';
+}
+
+.item1 {
+    grid-area: header;
+    color: brown;
+    background-color: rgb(25, 177, 55);
+    width: 50%;
+    transition: width 2s;
+}
+
+.item1:hover{
+    width: 100%;
+    background-color: black;
+}
+
+.item2 {
+    grid-area: left;
+    color: black;
+    background-color: lightblue;
+
+}
+
+.item3 {
+    grid-area: right;
+    color: gold;
+    background-color: lightblue;
+
+}
+
+
+
+@media only screen and (max-width:800px) {
+   .GridContainer {
+    display: grid;
+    grid-template-areas:
+    'header'
+    'left'
+    'right';
+   }
+}
