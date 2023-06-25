@@ -1,0 +1,45 @@
+<form action="register.php" method="post">
+<dbdb
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "user_db";
+
+// Create connection
+$conn = new mysqli($MySQL80, $, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $phone_code = $_POST['phoneCode'];
+    $phone = $_POST['phone'];
+
+    // Prepare statement
+    $stmt = $conn->prepare("INSERT INTO users (name, password, gender, email, phone_code, phone) VALUES (?, ?, ?, ?, ?, ?)");
+    
+    // Bind parameters
+    $stmt->bind_param("ssssis", $name, $password, $gender, $email, $phone_code, $phone);
+    
+    // Execute the prepared statement
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    // Close statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>

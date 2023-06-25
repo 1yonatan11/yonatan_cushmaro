@@ -18,3 +18,11 @@ app.get('/formHandler', (req,res)=>{
 app.listen(port, ()=>{
     console.log("server is running on port", port);
 });
+
+
+app.get('/formHandler', (req, res) => {
+    const name = req.query.name;
+    const email = req.query.email;
+
+    res.send(`Thank you ${name}. Your email is ${email}.`);
+});
